@@ -1,20 +1,35 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from "@react-navigation/native";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import Ionicons from "@expo/vector-icons/Ionicons";
+import Search from "./screens/Search";
+import Favourites from "./screens/Favourites";
+import { loadFavourites } from "./Storage";
+import { useEffect } from "react";
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+const Tab = createBottomTabNavigator();
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+const App = () => {
+    useEffect(() => {
+        loadFavourites();
+    });
+
+    return (
+        <NavigationContainer>
+            <Tab.Navigator
+                screenOptions={({ route }) => ({
+                    tabBarIcon: ({ focused, color, size }) => {
+                        let iconName = route.name === "Search" ? "search-outline" : "star-outline";
+
+                        return <Ionicons name={iconName} size={size} color={color} />;
+                    },
+                    tabBarActiveTintColor: "tomato",
+                    tabBarInactiveTintColor: "gray",
+                })}>
+                <Tab.Screen name="Search" component={Search} />
+                <Tab.Screen name="Favourites" component={Favourites} />
+            </Tab.Navigator>
+        </NavigationContainer>
+    );
+};
+
+export default App;
