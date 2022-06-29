@@ -1,6 +1,6 @@
 import { useState } from "@hookstate/core";
 import React from "react";
-import { StyleSheet, Text, SafeAreaView, View, FlatList } from "react-native";
+import { StyleSheet, Text, FlatList } from "react-native";
 import { ListItem, Avatar } from "react-native-elements";
 import { globalState } from "../Store";
 import { saveFavourites } from "../Storage";

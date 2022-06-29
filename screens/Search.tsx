@@ -34,7 +34,9 @@ const Search = () => {
                         fetch(queryUrl).then((response) => {
                             response.json().then((json) => {
                                 state.currentResults.set((previousState) => {
-                                    return json["Search"];
+                                    if (!json["Error"]) {
+                                        return json["Search"];
+                                    }
                                 });
                             });
                         });
