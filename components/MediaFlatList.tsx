@@ -31,9 +31,7 @@ const MediaFlatList = (props) => {
                 }}
             />
             <ListItem.Content>
-                <ListItem.Title>
-                    {item.Title} <Text style={styles.rating}>{item.Rated}</Text>
-                </ListItem.Title>
+                <ListItem.Title>{item.Title}</ListItem.Title>
                 <ListItem.Subtitle style={styles.subtitle}>{item.Year}</ListItem.Subtitle>
             </ListItem.Content>
             <ListItem.Chevron
@@ -63,10 +61,6 @@ const MediaFlatList = (props) => {
 };
 
 const styles = StyleSheet.create({
-    rating: {
-        color: "tomato",
-        fontWeight: "bold",
-    },
     subtitle: {
         color: "#AAA",
     },
